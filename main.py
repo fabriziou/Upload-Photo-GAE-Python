@@ -87,7 +87,7 @@ class ShowHandler(RequestHandler):
     """show all the photos"""
     def show(self, template=JENV.get_template('templates/show.html')):
         logging.info('showing photos')
-        # query on the atastore
+        # query on the Datastore
         photos = Photo.query().fetch()
         p_l = []
         # create a list of dictionary
