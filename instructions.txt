@@ -1,0 +1,6 @@
+1) mkdir lib
+2) cd lib
+3) pip install GoogleAppEngineCloudStorageClient --target .
+4) appengine_config.py
+5) change project ID in file YAML
+6) change bucket name in DoSomethingWithResult

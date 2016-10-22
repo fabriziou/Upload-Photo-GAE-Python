@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <meta charset="UTF-8">
+    <title>Show Photos</title>
+</head>
+<body>
+    <a href="/">Home</a>
+    <h1>Uploaded Photos</h1>
+
+    {% if photos|length == 0 %}
+        <h3 style="color: red">No photos uploaded!</h3>
+    {% else %}
+        <h3>Here are the photos you uploaded!</h3>
+        {% for p in photos %}
+            Date: {{p.get('upload_date')}}<br>
+            Serving URL: {{p.get('serving_url')}}<br>
+            <img src="{{p.get('serving_url')}}"><br>
+            Key: {{p.get('key')}}<br>
+            Filename: {{p.get('file_name')}}<br>
+            <input type="button" value="Delete" id="delete-btn-{{p.get('key')}}"><br>
+            ------------------------------------------<br>
+
+            <script>
+            $(document).ready(function() {
+
+                $("#delete-btn-{{p.get('key')}}").click(function () {
+                    var photo_key = "{{p.get('key')}}";
+
+                    $.ajax({
+                        url: "/delete",
+                        data: {
+                            "photo_key": photo_key
+                        },
+                        success: function (risposta) {
+                            alert('SUCCESS!');
+                            window.location.reload(true);
+
+                        },
+                        error: function (response,q, status ) {
+                            alert("ERROR!:\n"+response.responseText+"\n\n(" + response.status + " - "+ status+ ")");
+                            window.location.reload(true);
+                        }
+                    });
+                    return false;
+                });
+            });
+
+            </script>
+        {% endfor %}
+    {% endif %}
+
+</body>
+</html>

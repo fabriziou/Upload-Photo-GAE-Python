@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload photo on CloudStorage</title>
+</head>
+<body>
+    <h1>Upload photo on CloudStorage</h1>
+    <h3>Simple guide for uploading photo on CloudStorage</h3>
+    <a href="/show">Show photos!</a>
+
+    {% if message == 'success' %}
+        <script>
+
+            $(document).ready(function() {
+                alert('File has been uploaded!');
+            });
+
+        </script>
+        <h4>The file has been uploaded. Now you can Upload another one.</h4>
+    {% else %}
+        <h4 style="color: red">{{message}}</h4>
+    {% endif %}
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <label for="photo">File: </label>
+        <input type="file" id="photo" name="file">
+        <input type="submit" value="Upload!">
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,1 @@
+bucket = 'your app url -> name.appspot.com'
